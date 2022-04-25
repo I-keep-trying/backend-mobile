@@ -1,0 +1,2 @@
+(this["webpackJsonpcountries3.1"]=this["webpackJsonpcountries3.1"]||[]).push([[24],{672:function(t,e,r){"use strict";r.r(e);r(5);var o=r(733),s=r(737),n=r(51);e.default=function(t){var e=t.lt,r=t.lg,i=t.zm,c=[e,r];return Object(n.jsx)(o.a,{center:c,zoom:i,style:{width:"100%",height:"75vh"},children:Object(n.jsx)(s.a,{attribution:'&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',url:"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"})})}}}]);
+//# sourceMappingURL=24.12799064.chunk.js.map

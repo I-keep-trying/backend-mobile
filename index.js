@@ -8,6 +8,7 @@ const compression = require('compression')
 const helmet = require('helmet')
 const path = require('path')
 const app = express()
+const moment = require('moment')
 
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
@@ -97,8 +98,8 @@ app.get('/api/countries/news/:name', async (req, res) => {
     )
     res.json(response.data)
   } catch (err) {
-    console.log('axios request failed api/countries/news', err.response)
-    res.status(err.response.status).send(err.response.statusText)
+    console.log('axios request failed api/countries/news', err)
+    // res.status(err.response.status).send(err.response.statusText)
   }
 })
 

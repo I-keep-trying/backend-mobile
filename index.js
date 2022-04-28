@@ -9,25 +9,6 @@ const helmet = require('helmet')
 const path = require('path')
 const app = express()
 
-const CryptoJS = require('crypto-js')
-const fs = require('fs')
-
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      'img-src': [
-        "'self'",
-        'data:',
-        'flagcdn.com',
-        'upload.wikimedia.org',
-        'https://*.openstreetmap.org:*',
-        'https://openweathermap.org:*',
-        'mainfacts.com',
-      ],
-    },
-  })
-)
-
 app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), interest-cohort=()')
   res.setHeader(
@@ -104,18 +85,18 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
   }
 })
 
-// ---------------- CIA factbook data from repo ------------------
+// ---------------------- News ----------------------------
 
-app.get('/api/ciadata/:country', async (req, res) => {
-  const country = req.params.country
+app.get('/api/countries/news/:name', async (req, res) => {
+  const selectedCountry = req.params.name
   try {
     const response = await axios.get(
-      `https://raw.githubusercontent.com/I-keep-trying/factbook-data/master/data/${country}.json`
+      `https://newsapi.org/v2/everything?q=${selectedCountry}&from=${today}&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI_KEY}`
     )
     res.json(response.data)
-  } catch (error) {
-    console.log('axios request failed api/ciadata', error)
-    res.status(error.response.status).send(error.response.statusText)
+  } catch (err) {
+    console.log('axios request failed api/countries/news', err.response)
+    res.status(err.response.status).send(err.response.statusText)
   }
 })
 

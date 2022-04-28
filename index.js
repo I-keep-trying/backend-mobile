@@ -86,6 +86,8 @@ app.get('/api/time/lat/:lat/lng/:lng', async (req, res) => {
 })
 
 // ---------------------- News ----------------------------
+const date = new Date()
+const today = moment(date).format('YYYY-MM-DD')
 
 app.get('/api/countries/news/:name', async (req, res) => {
   const selectedCountry = req.params.name
